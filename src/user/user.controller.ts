@@ -9,18 +9,18 @@ import {
   Put,
   UsePipes,
   ValidationPipe
-} from '@nestjs/common';
-import { UserService } from './user.service';
-import { Auth } from "../auth/decorators/auth.decorator";
-import { CurrentUser } from "./user.decorator";
-import { UserDto } from "./user.dto";
+} from '@nestjs/common'
+import { UserService } from './user.service'
+import { Auth } from '../auth/decorators/auth.decorator'
+import { CurrentUser } from './user.decorator'
+import { UserDto } from './user.dto'
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {
   }
 
-  @Get()
+  @Get('all')
   async all() {
     return await this.userService.getAll();
   }
@@ -32,7 +32,7 @@ export class UserController {
   }
 
   @Get(':id')
-  async user(@Param('id', ParseIntPipe) id: number) {
+  async user(@Param('id') id: number) {
     return await this.userService.getById(id);
   }
 
